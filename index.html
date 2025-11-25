@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Security Tool</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- CSS LINK -->
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <!-- Animated Background -->
+  <canvas id="bgAnim"></canvas>
+
+  <div class="tilt-wrap">
+    <div class="container">
+
+      <!-- WELCOME PAGE -->
+      <div id="welcomePage">
+        <div style="font-size:70px;text-align:center;">🛡️</div>
+        <div class="title">Welcome</div>
+        <div class="subtitle">Your all-in-one Password & Email Security Suite</div>
+        <button class="btn btn-blue" onclick="goToAuth()">Get Started →</button>
+      </div>
+
+      <!-- AUTH PAGE -->
+      <div id="authPage" class="hidden">
+        <div class="title">Account</div>
+        <div class="subtitle">Login or create a new account</div>
+
+        <div class="auth-tabs">
+          <button id="tabLogin" class="auth-tab active">Login</button>
+          <button id="tabSignup" class="auth-tab">Signup</button>
+        </div>
+
+        <div class="slider-wrapper">
+          <div id="authSlider" class="slider">
+
+            <!-- LOGIN BOX -->
+            <div class="panel">
+              <div class="panel-title">Login</div>
+
+              <div class="login-modes">
+                <button id="loginModeEmailBtn" class="mode-btn active">Email</button>
+                <button id="loginModePhoneBtn" class="mode-btn">Phone OTP</button>
+              </div>
+
+              <div id="loginEmailSection">
+                <input id="loginEmail" type="email" class="input-box" placeholder="Email address">
+                <div style="position:relative;">
+                  <input id="loginPassword" type="password" class="input-box" placeholder="Password">
+                  <span id="loginToggle" class="toggle-small">Show</span>
+                </div>
+                <button class="btn btn-green" onclick="handleEmailLogin()">Login</button>
+              </div>
+
+              <div id="loginPhoneSection" class="hidden">
+                <input id="phoneInput" type="tel" class="input-box" placeholder="Phone number (10 digits)">
+                <button id="sendOtpBtn" class="btn btn-blue">Send OTP</button>
+                <p class="otp-hint">Demo only: OTP will be shown on screen.</p>
+
+                <div id="otpSection" class="hidden" style="margin-top:8px;">
+                  <input id="otpInput" type="text" class="input-box" placeholder="Enter OTP">
+                  <button id="verifyOtpBtn" class="btn btn-green">Verify OTP</button>
+                </div>
+              </div>
+
+              <p id="authMessage" class="small-msg"></p>
+            </div>
+
+            <!-- SIGNUP -->
+            <div class="panel">
+              <div class="panel-title">Signup</div>
+              <input id="signupName" type="text" class="input-box" placeholder="Full name">
+              <input id="signupEmail" type="email" class="input-box" placeholder="Email">
+              <input id="signupPhone" type="tel" class="input-box" placeholder="Phone number">
+              <input id="signupPassword" type="password" class="input-box" placeholder="Password">
+              <input id="signupConfirm" type="password" class="input-box" placeholder="Confirm password">
+              <button id="signupBtn" class="btn btn-green">Create Account</button>
+              <p id="signupMessage" class="small-msg"></p>
+            </div>
+
+          </div>
+        </div>
+
+        <button class="btn btn-gray" onclick="goToWelcome()">← Back</button>
+      </div>
+
+      <!-- SELECTION PAGE -->
+      <div id="selectionPage" class="hidden">
+        <div class="title">🔐 Security Tool</div>
+        <div class="subtitle">Choose what you want to check</div>
+        <button class="btn btn-blue" onclick="showPasswordPage()">🔑 Check Password Security</button>
+        <button class="btn btn-blue" onclick="showEmailPage()">📧 Check Email Breach</button>
+        <button class="btn btn-gray" onclick="goToAuth()">← Logout</button>
+      </div>
+
+      <!-- PASSWORD PAGE -->
+      <div id="passwordPage" class="hidden">
+        <h2 class="title">🔑 Password Security</h2>
+        <div style="position:relative;">
+          <input id="passwordInput" type="password" class="input-box" placeholder="Enter password">
+          <span id="toggleVisibility" class="toggle-small">Show</span>
+        </div>
+        <button id="checkBtn" class="btn btn-green">Check Password</button>
+
+        <div class="section-box">
+          <strong>💪 Strength</strong>
+          <div class="strength-bar">
+            <div id="strengthBar" class="strength-fill"></div>
+          </div>
+          <p id="strengthText">Enter password to check strength</p>
+        </div>
+
+        <div class="section-box">
+          <strong>🧬 Breach Status</strong>
+          <p id="pwnedStatus">Waiting...</p>
+          <p id="pwnedCount"></p>
+        </div>
+
+        <button class="btn btn-gray" onclick="backToSelection()">← Back</button>
+      </div>
+
+      <!-- EMAIL PAGE -->
+      <div id="emailPage" class="hidden">
+        <h2 class="title">📧 Email Breach Checker</h2>
+        <input id="emailInput" type="email" class="input-box" placeholder="Enter email">
+        <button id="emailCheckBtn" class="btn btn-green">Check Email</button>
+
+        <div class="section-box">
+          <p id="emailStatus">Waiting...</p>
+          <p id="emailResult"></p>
+        </div>
+
+        <button class="btn btn-gray" onclick="backToSelection()">← Back</button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- JS FILES -->
+  <script src="background.js"></script>
+  <script src="app.js"></script>
+
+</body>
+</html>
